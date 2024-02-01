@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest {
 
     @Test
+
     public void addSongToPlaylist() throws InterruptedException{
 
         navigateToPage();
@@ -23,8 +24,6 @@ public class Homework17 extends BaseTest {
         Thread.sleep(1000);
         choosePlaylist();
         Thread.sleep(1000);
-       // WebElement Notification = driver.findElement(By.cssSelector(".success.show"));
-
 
         WebElement actualResult = driver.findElement(By.cssSelector("body > div.alertify-logs.top.right"));
         String actualText = actualResult.getText().replace("\"","").trim();
