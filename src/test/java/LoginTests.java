@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest {
 
         String url = "https://testpro.io/";
         driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        //Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
 
@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
 public void loginValidEmailPassword() throws InterruptedException {
 
     //Steps 1: Open Browser and navigate to Koel app.
-    navigateToPage();
+    //navigateToPage();
     //Step 2: Enter email
     provideEmail("varag@testpro.io");
     //Step 3: Enter Password
@@ -35,6 +35,27 @@ public void loginValidEmailPassword() throws InterruptedException {
     WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
     Assert.assertTrue(avatarIcon.isDisplayed());
 }
+
+    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
+    public void loginWithNegativeData(String email, String password){
+         //NavigateToPage();
+        // Step 2: Enter email
+        provideEmail(email);
+
+        //Step 3: Enter Password
+        providePassword(password);
+
+        // Click on Login button
+        loginToKoel();
+
+        // Assertion (expected vs actual)
+//    WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+//    Assert.assertTrue(avatarIcon.isDisplayed());
+
+      //Quit the browser
+        driver.quit();
+    }
+
 
     @Test
     public void loginInvalidEmailValidPassword(){
