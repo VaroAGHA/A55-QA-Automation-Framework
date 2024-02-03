@@ -10,7 +10,7 @@ public class ProfileTest extends BaseTest{
    @Test
    public void changeProfileName() throws InterruptedException{
       //navigate to Koel
-       navigateToPage();
+       //navigateToPage();
        //login with correct credentials
        provideEmail("varag@testpro.io");
        providePassword("te$t$tudent1");

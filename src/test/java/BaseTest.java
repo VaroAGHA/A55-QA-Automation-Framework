@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -14,7 +12,18 @@ public class BaseTest {
 
     public WebDriver driver;
 
-    public String url = "https://qa.koel.app/";
+   // public String url = "https://qa.koel.app/";
+
+   ///Data providers Start
+    @DataProvider(name="invalidLoginData")
+    public Object[][] getDataFromDataProvider() {
+        return new Object[][]{
+                {"invalid@email.com", "invalidPassword"},
+                {"varag@testpro.io", ""},
+                {"", ""},
+                {"invalid@email.com", "te$t$tudent1"},
+        };
+    }
 
     @BeforeSuite
     static void setupClass() {
@@ -22,13 +31,15 @@ public class BaseTest {
     }
 
    @BeforeMethod
-   public void launchBrowser(){
+   @Parameters({"BaseURL"})
+   public void launchBrowser(String baseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        navigateToPage(baseURL);
     }
 
 
@@ -54,7 +65,7 @@ public class BaseTest {
         emailField.sendKeys(email);
     }
 
-    public void navigateToPage() {
+    public void navigateToPage(String url) {
         driver.get(url);
     }
 }
