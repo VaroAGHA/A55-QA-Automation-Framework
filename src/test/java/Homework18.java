@@ -12,10 +12,10 @@ public class Homework18 extends BaseTest {
        provideEmail("varag@testpro.io");
        providePassword("te$t$tudent1");
        loginToKoel();
-       Thread.sleep(2000);
+       //Thread.sleep(2000);
        playNextSong();
        playMusic();
-       Thread.sleep(10000);
+       //Thread.sleep(10000);
 
        WebElement soundBar = driver.findElement(By.cssSelector("#mainFooter > div.side.player-controls"));
        WebElement pauseBtn = driver.findElement(By.cssSelector("#mainFooter > div.side.player-controls > span"));
