@@ -8,6 +8,9 @@
             <class name="LoginTests"/>
             <class name="ProfileTest"/>
             <class name="BaseTest"/>
+            <class name="AllSongsTest"/>
+            <class name="HomeTest"/>
+            <class name="Homework21"/>
             <class name="Homework20"/>
             <class name="Homework19"/>
             <class name="Homework18"/>
