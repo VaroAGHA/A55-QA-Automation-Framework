@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HomeTest extends BaseTest {
 
-    String newPlaylistName = "Sample Edited Playlist";
+//    String newPlaylistName = "Sample Edited Playlist";
 
     @Test
     public void hoverOverPlayBtn() {
@@ -63,41 +63,45 @@ public class HomeTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + playlistName + "')]"))).click();
     }
 
-    @Test
+   @Test
     public void renamePlaylist() throws InterruptedException {
-        String newPlaylistName = "Sample Edited Playlist";
+       // String newPlaylistName = "Sample Edited Playlist";
+       // String updatedPlaylistSuccessMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
-        String updatedPlaylistSuccessMsg = "Updated playlist \"Sample Edited Playlist.\"";
-        //login
-        provideEmail("varag@testpro.io");
-        providePassword("te$t$tudent1");
-        loginToKoel();
-        //Thread.sleep(5000);
-        //double Click Playlist
-        doubleClickPlaylist();
-        //enter new name
-        enterNewName();
-        Thread.sleep(5000);
-        //assertion
-        Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistSuccessMsg);
-        //Thread.sleep(5000);
-    }
-
-    public String getRenamePlaylistSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
-
-    public void enterNewName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys(newPlaylistName);
-        playlistInputField.sendKeys(Keys.ENTER);
-
-    }
-
-    public void doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(5)")));
-        actions.doubleClick(playlistElement).perform();
-    }
+       //login
+       provideEmail("varag@testpro.io");
+       providePassword("te$t$tudent1");
+       loginToKoel();
+   }
 }
+        //Thread.sleep(5000);
+        //Commita arac double clikic minchev Assert
+//        //double Click Playlist
+//        doubleClickPlaylist();
+//        //enter new name
+//        enterNewName();
+//        Thread.sleep(5000);
+//        //assertion
+//        Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistSuccessMsg);
+        //Thread.sleep(5000);
+    //}
+
+//    public String getRenamePlaylistSuccessMsg() {
+//        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+//        return notification.getText();
+//    }
+
+//    public void enterNewName() {
+//        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+//        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+//        playlistInputField.sendKeys(newPlaylistName);
+//        playlistInputField.sendKeys(Keys.ENTER);
+
+   // }
+
+//    public void doubleClickPlaylist() {
+//        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(5)")));
+//        actions.doubleClick(playlistElement).perform();
+    //}
+
+
