@@ -12,7 +12,6 @@ public class HomePage extends BasePage {
     }
 
     //Web-Elements
-    String newPlaylistName = "Sample Edited Playlist";
 
     String newPlaylistName = "Sample Edited Playlist";
             By userAvatarIcon = By.cssSelector("img.avatar");
