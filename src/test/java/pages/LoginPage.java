@@ -16,6 +16,11 @@ public class LoginPage extends BasePage {
     }
 
     //Web Elements
+    By emailField = By.cssSelector("input[type='email']");
+By passwordField = By.cssSelector("input[type='password']");
+By loginBtn = By.cssSelector("button[type='submit']");
+
+    //Web Elements
     @FindBy(id = "email")
     By emailField = By.cssSelector("input[type='email']");
     @FindBy(id = "password")

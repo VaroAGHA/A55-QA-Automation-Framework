@@ -42,6 +42,14 @@ public class HomePage extends BasePage {
         findElement(allSongsList).click();
     }
 
+    By playlistLocator = By.cssSelector(".playlist:nth-child(6)");
+
+    /* The org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"[name='name']"}
+    It's possible that the element is not immediately available when WebDriver attempts to locate it.
+     By playlistInputFieldLocator = By.cssSelector("[name='name']");
+    */
+    By notificationLocator = By.cssSelector("div.success.show");
+
     public void doubleClickPlaylist() {
          //WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(6)")));
         WebElement playlistElement =findElement(playlistElementLocator);
@@ -51,6 +59,8 @@ public class HomePage extends BasePage {
     public void enterNewName() {
         WebElement playlistInputField = findElement(playlistInputFieldLocator);
         //WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        // WebElement playlistInputField = driver.findElement(playlistInputFieldLocator);
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);

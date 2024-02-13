@@ -11,6 +11,7 @@ public class Homework22 extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage =new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
         loginPage.login();
         homePage.doubleClickPlaylist();
         homePage.enterNewName();
