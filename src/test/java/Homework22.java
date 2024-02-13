@@ -6,7 +6,7 @@ import pages.LoginPage;
 
 public class Homework22 extends BaseTest {
     @Test
-    public void renamePlaylist() throws InterruptedException{
+    public void renamePlaylist(){
         String updatedPlaylistSuccessMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
         LoginPage loginPage = new LoginPage(driver);

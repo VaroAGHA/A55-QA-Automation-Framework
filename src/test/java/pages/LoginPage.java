@@ -2,6 +2,13 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+/**
+ * This is class is using Selenium By Abstract class to locate elements.
+ * Login Helper Methods are using By class for locators.
+ */
+
 
 public class LoginPage extends BasePage{
 
@@ -9,8 +16,11 @@ public class LoginPage extends BasePage{
         super(givenDriver);
     }
 //Web Elements
+    @FindBy(id = "email")
     By emailField = By.cssSelector("input[type='email']");
+    @FindBy(id = "password")
 By passwordField = By.cssSelector("input[type='password']");
+    @FindBy(id="submit")
 By loginBtn = By.cssSelector("button[type='submit']");
 
 //Helper Methods
