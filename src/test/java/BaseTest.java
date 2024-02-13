@@ -46,17 +46,17 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
        // options.addArguments("--kiosk");
         // Set the initial window size
-        options.addArguments("--window-size=1600,1200");
+        options.addArguments("--window-size=1888,1800");
 
         driver = new ChromeDriver(options);
         //Implicit Wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //Explicit Wait
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        fluentWait = new FluentWait<>(driver)
+      /*  fluentWait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(10));
-
+*/
        // driver.manage().window().maximize();
         actions = new Actions(driver);
         navigateToPage(baseURL);

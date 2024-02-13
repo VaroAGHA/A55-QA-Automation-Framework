@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
@@ -14,32 +13,14 @@ public class HomePage extends BasePage {
 
     //Web-Elements
     String newPlaylistName = "Sample Edited Playlist";
-    //getUserAvatar
-    By userAvatarIcon = By.cssSelector("img.avatar");
 
-    //chooseAllSongsList
-    By allSongsList = By.cssSelector("Li a.songs");
+    String newPlaylistName = "Sample Edited Playlist";
+            By userAvatarIcon = By.cssSelector("img.avatar");
 
-    //doubleClickPlaylist
-    By playlistElementLocator = By.cssSelector(".playlist:nth-child(6)");
-
-    //enterNewName
-    @FindBy(css = "[name='name']" )
-    By playlistInputFieldLocator = By.cssSelector("[name='name']");
-
-
-    //notification
-    By notificationLocator = By.cssSelector("div.success.show");
-
-    /*-----------------------------------------------------------------------------------------*/
     //Helper Methods
     public WebElement getUserAvatar() {
         return findElement(userAvatarIcon);
-    }
 
-    public void chooseAllSongsList() {
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("Li a.songs"))).click();
-        findElement(allSongsList).click();
     }
 
     By playlistLocator = By.cssSelector(".playlist:nth-child(6)");
@@ -51,8 +32,7 @@ public class HomePage extends BasePage {
     By notificationLocator = By.cssSelector("div.success.show");
 
     public void doubleClickPlaylist() {
-         //WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(6)")));
-        WebElement playlistElement =findElement(playlistElementLocator);
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(6)")));
         actions.doubleClick(playlistElement).perform();
     }
 
@@ -67,8 +47,7 @@ public class HomePage extends BasePage {
     }
 
     public String getRenamePlaylistSuccessMsg() {
-        //WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        WebElement notification = findElement(notificationLocator);
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
     }
 }

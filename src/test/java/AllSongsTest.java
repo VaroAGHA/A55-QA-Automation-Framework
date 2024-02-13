@@ -1,23 +1,16 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AllSongsPage;
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
 
 public class AllSongsTest extends BaseTest {
-
-    //PlaySong Test using Procedural Programming
     @Test
     public void playSongWithContextClick() {
         //Login
         provideEmail("varag@testpro.io");
         providePassword("te$t$tudent1");
-        //loginToKoel();
+        loginToKoel();
         //chooseAllSongsList();
         chooseAllSongsList();
         //contextClickFirstSong();
@@ -26,28 +19,6 @@ public class AllSongsTest extends BaseTest {
         choosePlay();
         //Assertions();
         Assert.assertTrue(isSongPlaying());
-    }
-
-
-    //PlaySong Test using OOP and Page Factoring
-    @Test
-    public void playSong() {
-        //Login
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        loginPage.login();
-
-       //BasePage.provideEmail("varag@testpro.io").providePassword("te$t$tudent1").clickSubmit();
-
-        //chooseAllSongsList();
-        homePage.chooseAllSongsList();
-        //contextClickFirstSong();
-        allSongsPage.contextClickFirstSong();
-        //choosePlay();
-        allSongsPage.choosePlay();
-        //Assertions();
-        Assert.assertTrue(allSongsPage.isSongPlaying());
     }
 
     public boolean isSongPlaying() {
@@ -67,5 +38,6 @@ public class AllSongsTest extends BaseTest {
 
     public void chooseAllSongsList() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("Li a.songs"))).click();
+
     }
 }
