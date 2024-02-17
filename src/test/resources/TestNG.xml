@@ -5,9 +5,12 @@
 <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
+            <class name="Homework24"/>
+            <!--
             <class name="LoginTests"/>
             <class name="ProfileTest"/>
             <class name="BaseTest"/>
+            <class name="ProfileTest"/>
             <class name="AllSongsTest"/>
             <class name="HomeTest"/>
             <class name="Homework23"/>
@@ -18,6 +21,7 @@
             <class name="Homework18"/>
             <class name="Homework17"/>
             <class name="Homework16"/>
+            -->
         </classes>
     </test>
 </suite>
