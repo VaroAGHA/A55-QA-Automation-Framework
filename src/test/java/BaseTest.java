@@ -21,7 +21,9 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
 
@@ -30,6 +32,12 @@ public class BaseTest {
     public Wait<WebDriver> fluentWait;
 
     public Actions actions;
+
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
 
     // public String url = "https://qa.koel.app/";
 
@@ -47,20 +55,24 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
 
-        // WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
         WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.edgedriver().setup();
         // WebDriverManager.safaridriver();
     }
 
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String baseURL) throws MalformedURLException {
-        // ChromeOptions options = new ChromeOptions();
-        //  options.addArguments("--remote-allow-origins=*");
-        // options.addArguments("--kiosk");
-        // Set the initial window size
-        //options.addArguments("--window-size=1888,1800");
-        // driver = new ChromeDriver(options);
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+       /* ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--kiosk");
+        //Set the initial window size
+        options.addArguments("--window-size=1888,1800");
+       // driver = new ChromeDriver(options);
+        */
 //-------------------------------------------------------------------------------------------------//
         //driver = new SafariDriver();
 //---------------------------------------------------------------------------------------------------//
@@ -70,19 +82,19 @@ public class BaseTest {
         driver = new FirefoxDriver(options);
         */
         //----------------------------------------------------------------------------------------//
-        driver = pickBrowser(System.getProperty("browser"));
-        System.out.println();
+        //driver = pickBrowser(System.getProperty("browser"));
+        //System.out.println();
 
         //Implicit Wait
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        // getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //Explicit Wait
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
       /*  fluentWait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(10));
 */
         // driver.manage().window().maximize();
-        actions = new Actions(driver);
+        actions = new Actions(getDriver());
         navigateToPage(baseURL);
     }
 
@@ -107,7 +119,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
+            case "cloud":
+                return new Homework25().lambdatest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -118,9 +131,17 @@ public class BaseTest {
     }
 
 
+
+
+    /* @AfterMethod
+     public void closeBrowser() {
+         driver.quit();
+     }
+     */
     @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+    public void tearDown() {
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
     //Helper Methods
@@ -146,6 +167,6 @@ public class BaseTest {
     }
 
     public void navigateToPage(String url) {
-        driver.get(url);
+        getDriver().get(url);
     }
 }

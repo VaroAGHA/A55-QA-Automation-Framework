@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
-<parameter name="BaseURL" value="https://qa.koel.app/"/>
+<suite name="TestNG" parallel="methods" thread-count="3">
+    <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="Homework24"/>
+            <class name="Homework25"/>
+            <!--<methods>
+                <include name="loginValidEmailValidPasswordTest"/>
+                <include name="loginInValidEmailValidPasswordTest"/>
+                <include name="loginEmptyEmailPasswordTest"/>
+                <include name="invalidLoginData"/>
+            </methods>
+        </class>-->
+
             <!--
             <class name="LoginTests"/>
-            <class name="ProfileTest"/>
             <class name="BaseTest"/>
+            <class name="ProfileTest"/>
             <class name="ProfileTest"/>
             <class name="AllSongsTest"/>
             <class name="HomeTest"/>
+            <class name="Homework25"/>
+            <class name="Homework24"/>
             <class name="Homework23"/>
             <class name="Homework22"/>
             <class name="Homework21"/>
