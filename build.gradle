@@ -10,8 +10,11 @@ repositories {
 }
 
 dependencies {
+    //Selenium WebDriver dependencies
     testImplementation 'org.testng:testng:7.6.1'
+    //WebDriverManager for managing browser drivers
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+    //TestNG for testing framework
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
 }
 

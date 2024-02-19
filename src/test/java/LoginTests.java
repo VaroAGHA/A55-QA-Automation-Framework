@@ -22,6 +22,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+   /* @Test
 
     public void loginValidEmailPassword() throws InterruptedException {
 
@@ -41,6 +42,7 @@ public class LoginTests extends BaseTest {
         WebElement avatarIcon = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
+    */
 
     @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
     public void loginWithNegativeData(String email, String password){
@@ -62,19 +64,48 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
+
 //Login with Valid email Test using the Page Object Model
 @Test
 public void loginValidEmailValidPasswordTest() {
     LoginPage loginPage = new LoginPage(driver);
     HomePage homePage = new HomePage(driver);
+public void loginValidEmailValidPasswordTest() throws InterruptedException {
+    LoginPage loginPage = new LoginPage(getDriver());
+    HomePage homePage = new HomePage(getDriver());
 
     loginPage.provideEmail("varag@testpro.io");
     loginPage.providePassword("te$t$tudent1");
     loginPage.clickSubmit();
+    Thread.sleep(2000);
     Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 }
+@Test
+    public void loginInValidEmailValidPasswordTest () throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
+        loginPage.provideEmail("invalid@email.com");
+        loginPage.providePassword("te$t$tudent1");
+        loginPage.clickSubmit();
+        Thread.sleep(2000);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+
+    }
     @Test
+    public void loginEmptyEmailPasswordTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.provideEmail("");
+        loginPage.providePassword("te$t$tudent1");
+        loginPage.clickSubmit();
+        Thread.sleep(2000);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        driver.quit();
+    }
+
+  /*  @Test
     public void loginInvalidEmailValidPassword(){
         //Preconditions
         ChromeOptions options = new ChromeOptions();
@@ -107,6 +138,7 @@ public void loginValidEmailValidPasswordTest() {
         //Quit the browser
         driver.quit();
     }
+   */
 
     @Test
     public void loginValidEmailEmptyPassword()  {
@@ -139,4 +171,6 @@ public void loginValidEmailValidPasswordTest() {
 //    Assert.assertTrue(avatarIcon.isDisplayed());
         driver.quit();
     }
+
+
 }
