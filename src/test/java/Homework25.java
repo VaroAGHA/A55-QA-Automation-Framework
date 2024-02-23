@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Homework25 {
 
-    protected WebDriver lambdatest() throws MalformedURLException {
+    public WebDriver lambdatest() throws MalformedURLException {
         String hubUrl = "https://hub.lambdatest.com/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();

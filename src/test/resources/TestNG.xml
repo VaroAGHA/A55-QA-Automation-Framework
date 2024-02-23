@@ -5,23 +5,21 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="Homework25"/>
-            <!--<methods>
-                <include name="loginValidEmailValidPasswordTest"/>
-                <include name="loginInValidEmailValidPasswordTest"/>
-                <include name="loginEmptyEmailPasswordTest"/>
-                <include name="invalidLoginData"/>
-            </methods>
-        </class>-->
-
-            <!--
-            <class name="LoginTests"/>
             <class name="BaseTest"/>
-            <class name="ProfileTest"/>
+            <class name="Homework25">
+             <methods>
+                 <include name="loginValidEmailValidPasswordTest"/>
+                 <include name="loginInValidEmailValidPasswordTest"/>
+                 <include name="loginEmptyEmailPasswordTest"/>
+                 <include name="invalidLoginData"/>
+             </methods>
+         </class>
+            <!--
+
+            <class name="LoginTests"/>
             <class name="ProfileTest"/>
             <class name="AllSongsTest"/>
             <class name="HomeTest"/>
-            <class name="Homework25"/>
             <class name="Homework24"/>
             <class name="Homework23"/>
             <class name="Homework22"/>

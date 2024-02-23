@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+import pages.AllSongsPage;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -42,7 +43,7 @@ public class BaseTest {
     // public String url = "https://qa.koel.app/";
 
     ///Data providers Start
-    @DataProvider(name = "invalidLoginData")
+   /* @DataProvider(name = "invalidLoginData")
     public Object[][] getDataFromDataProvider() {
         return new Object[][]{
                 {"invalid@email.com", "invalidPassword"},
@@ -52,12 +53,14 @@ public class BaseTest {
         };
     }
 
+    */
+
     @BeforeSuite
     static void setupClass() {
 
         WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
-        WebDriverManager.edgedriver().setup();
+        // WebDriverManager.firefoxdriver().setup();
+        // WebDriverManager.edgedriver().setup();
         // WebDriverManager.safaridriver();
     }
 
@@ -82,18 +85,17 @@ public class BaseTest {
         driver = new FirefoxDriver(options);
         */
         //----------------------------------------------------------------------------------------//
-        //driver = pickBrowser(System.getProperty("browser"));
+       // driver = pickBrowser(System.getProperty("browser"));
         //System.out.println();
 
         //Implicit Wait
         // getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //Explicit Wait
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-      /*  fluentWait = new FluentWait<WebDriver>(driver)
+      fluentWait = new FluentWait<WebDriver>(getDriver())
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(10));
-*/
-        // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         actions = new Actions(getDriver());
         navigateToPage(baseURL);
     }
@@ -130,9 +132,6 @@ public class BaseTest {
         }
     }
 
-
-
-
     /* @AfterMethod
      public void closeBrowser() {
          driver.quit();
@@ -143,6 +142,7 @@ public class BaseTest {
         threadDriver.get().close();
         threadDriver.remove();
     }
+
 
     //Helper Methods
     public void loginToKoel() {
@@ -169,4 +169,6 @@ public class BaseTest {
     public void navigateToPage(String url) {
         getDriver().get(url);
     }
+    //public void (){
+    // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
 }

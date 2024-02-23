@@ -15,14 +15,13 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() {
 
-        String url = "https://testpro.io/";
-        driver.get(url);
+        // String url = "https://testpro.io/";
+        //driver.get(url);
         //Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
 
     @Test
-   /* @Test
 
     public void loginValidEmailPassword() throws InterruptedException {
 
@@ -32,6 +31,7 @@ public class LoginTests extends BaseTest {
         provideEmail("varag@testpro.io");
         //Step 3: Enter Password
         providePassword("te$t$tudent1");
+        Thread.sleep(2000);
         //Step4 : Click on Login button
         loginToKoel();
 
@@ -42,70 +42,106 @@ public class LoginTests extends BaseTest {
         WebElement avatarIcon = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
-    */
-
-    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
-    public void loginWithNegativeData(String email, String password){
-         //NavigateToPage();
-        // Step 2: Enter email
-        provideEmail(email);
-
-        //Step 3: Enter Password
-        providePassword(password);
-
-        // Click on Login button
-        loginToKoel();
-
-        // Assertion (expected vs actual)
-//    WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-//    Assert.assertTrue(avatarIcon.isDisplayed());
-
-      //Quit the browser
-        driver.quit();
-    }
 
 
 //Login with Valid email Test using the Page Object Model
-@Test
-public void loginValidEmailValidPasswordTest() {
-    LoginPage loginPage = new LoginPage(driver);
-    HomePage homePage = new HomePage(driver);
-public void loginValidEmailValidPasswordTest() throws InterruptedException {
-    LoginPage loginPage = new LoginPage(getDriver());
-    HomePage homePage = new HomePage(getDriver());
+    @Test
+    public static void loginValidEmailValidPasswordTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
-    loginPage.provideEmail("varag@testpro.io");
-    loginPage.providePassword("te$t$tudent1");
-    loginPage.clickSubmit();
-    Thread.sleep(2000);
-    Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
-}
-@Test
-    public void loginInValidEmailValidPasswordTest () throws InterruptedException {
+        loginPage.provideEmail("varag@testpro.io");
+        Thread.sleep(2000);
+        loginPage.providePassword("te$t$tudent1");
+        Thread.sleep(2000);
+        loginPage.clickSubmit();
+        Thread.sleep(2000);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+    }
+
+    @Test
+    public void loginInValidEmailValidPasswordTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("invalid@email.com");
+        Thread.sleep(2000);
         loginPage.providePassword("te$t$tudent1");
+        Thread.sleep(2000);
         loginPage.clickSubmit();
         Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
+
     @Test
     public void loginEmptyEmailPasswordTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("");
-        loginPage.providePassword("te$t$tudent1");
+        Thread.sleep(2000);
+        loginPage.providePassword("");
+        Thread.sleep(2000);
         loginPage.clickSubmit();
         Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
-        driver.quit();
+
     }
 
-  /*  @Test
+    @Test
+    public void loginEmptyEmailValidPasswordTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.provideEmail("");
+        Thread.sleep(2000);
+        loginPage.providePassword("te$t$tudent1");
+        Thread.sleep(2000);
+        loginPage.clickSubmit();
+        Thread.sleep(2000);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+
+    }
+
+    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
+    public void loginWithNegativeData(String email, String password) {
+        //NavigateToPage();
+        // Step 2: Enter email
+        provideEmail(email);
+        //Step 3: Enter Password
+        providePassword(password);
+        // Click on Login button
+        loginToKoel();
+        // Assertion (expected vs actual)
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+        //Quit the browser
+        // driver.quit();
+        // getDriver().quit();
+    }
+}
+
+/*@Test
+public void loginValidEmailValidPassword()  {
+    LoginPage loginPage = new LoginPage(driver);
+    HomePage homePage = new HomePage(driver);
+    loginPage.provideEmail("varag@testpro.io");
+    loginPage.providePassword("te$t$tudent1");
+   loginPage.clickSubmit();
+   Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+}
+
+ */
+
+/*@Test
+private void loginValidEmailValidPasswordTest() {
+  LoginPage loginPage = new LoginPage(driver);
+    HomePage homePage = new HomePage(driver);
+    */
+
+
+   /* @Test
     public void loginInvalidEmailValidPassword(){
         //Preconditions
         ChromeOptions options = new ChromeOptions();
@@ -138,9 +174,10 @@ public void loginValidEmailValidPasswordTest() throws InterruptedException {
         //Quit the browser
         driver.quit();
     }
-   */
 
-    @Test
+    */
+
+ /*  @Test
     public void loginValidEmailEmptyPassword()  {
         //Preconditions
         ChromeOptions options = new ChromeOptions();
@@ -171,6 +208,10 @@ public void loginValidEmailValidPasswordTest() throws InterruptedException {
 //    Assert.assertTrue(avatarIcon.isDisplayed());
         driver.quit();
     }
-
-
 }
+
+  */
+
+
+
+
