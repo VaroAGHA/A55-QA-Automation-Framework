@@ -8,49 +8,54 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
+
+    //Web-Elements
+    String newPlaylistName = "Sample Edited Playlist";
+@FindBy(css="img.avatar")WebElement userAvatarIcon;
+   // By userAvatarIcon = By.cssSelector("img.avatar");
+    //chooseAllSongsList
+    By allSongsList = By.cssSelector("Li a.songs");
+    //doubleClickPlaylist
+
+    By playlistElementLocator = By.cssSelector(".playlist:nth-child(6)");
+    //enterNewName
+
+    @FindBy(css = "[name='name']")
+    By playlistInputFieldLocator = By.cssSelector("[name='name']");
+
+    //notification
+
+    By notificationLocator = By.cssSelector("div.success.show");
+
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
-    //Web-Elements
-
-    String newPlaylistName = "Sample Edited Playlist";
-            By userAvatarIcon = By.cssSelector("img.avatar");
-    //chooseAllSongsList
-    By allSongsList = By.cssSelector("Li a.songs");
-
-    //doubleClickPlaylist
-    By playlistElementLocator = By.cssSelector(".playlist:nth-child(6)");
-
-    //enterNewName
-    @FindBy(css = "[name='name']" )
-    By playlistInputFieldLocator = By.cssSelector("[name='name']");
-
-
-    //notification
-    By notificationLocator = By.cssSelector("div.success.show");
-
     /*-----------------------------------------------------------------------------------------*/
 
     //Helper Methods
     public WebElement getUserAvatar() {
-        return findElement(userAvatarIcon);
+        return userAvatarIcon;
 
     }
+
+    public boolean avatarToBeNotVisible() {
+        return waitForElementToBeNotVisible(userAvatarIcon);
+    }
+
     public void chooseAllSongsList() {
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("Li a.songs"))).click();
         findElement(allSongsList).click();
     }
 
     public void doubleClickPlaylist() {
-       // WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(6)")));
-        WebElement playlistElement =findElement(playlistElementLocator);
+        // WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(6)")));
+        WebElement playlistElement = findElement(playlistElementLocator);
         actions.doubleClick(playlistElement).perform();
     }
 
     public void enterNewName() {
         WebElement playlistInputField = findElement(playlistInputFieldLocator);
-       // WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        // WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);

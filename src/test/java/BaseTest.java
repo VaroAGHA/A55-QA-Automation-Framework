@@ -25,8 +25,11 @@ import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.concurrent.TimeoutException;
 
 public class BaseTest {
+
+
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -55,20 +58,24 @@ public class BaseTest {
 
     */
 
-    @BeforeSuite
+  /* @BeforeSuite
     static void setupClass() {
 
-       // WebDriverManager.chromedriver().setup();
-        // WebDriverManager.firefoxdriver().setup();
-        // WebDriverManager.edgedriver().setup();
+       WebDriverManager.chromedriver().setup();
+       // WebDriverManager.firefoxdriver().setup();
+        //WebDriverManager.edgedriver().setup();
         // WebDriverManager.safaridriver();
     }
+
+   */
 
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String baseURL) throws MalformedURLException {
         threadDriver.set(pickBrowser(System.getProperty("browser")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        threadDriver.get().manage().window().maximize();
+        threadDriver.get().manage().deleteAllCookies();
        /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--kiosk");
@@ -125,9 +132,11 @@ public class BaseTest {
                 return new Homework25().lambdatest();
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(chromeOptions);
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
+                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+               // chromeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new ChromeDriver(optionsChrome);
 
         }
     }
@@ -172,3 +181,5 @@ public class BaseTest {
     //public void (){
     // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
 }
+
+
