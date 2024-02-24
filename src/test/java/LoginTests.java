@@ -12,7 +12,7 @@ import pages.LoginPage;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    @Test
+  /*  @Test
     public void loginEmptyEmailPassword() {
 
         // String url = "https://testpro.io/";
@@ -42,6 +42,8 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
+   */
+
 
 //Login with Valid email Test using the Page Object Model
     @Test
@@ -63,7 +65,7 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("invalid@email.com");
         loginPage.providePassword("te$t$tudent1");
         loginPage.clickSubmit();
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(homePage.avatarToBeNotVisible());
 
     }
 
@@ -75,7 +77,7 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("");
         loginPage.providePassword("");
         loginPage.clickSubmit();
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(homePage.avatarToBeNotVisible());
 
     }
 
@@ -87,7 +89,7 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("");
         loginPage.providePassword("te$t$tudent1");
         loginPage.clickSubmit();
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(homePage.avatarToBeNotVisible());
 
     }
 
