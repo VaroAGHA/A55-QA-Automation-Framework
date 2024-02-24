@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
 
     @Test
 
-    public void loginValidEmailPassword() throws InterruptedException {
+    public void loginValidEmailPassword() {
 
         //Steps 1: Open Browser and navigate to Koel app.
         //navigateToPage();
@@ -31,7 +31,6 @@ public class LoginTests extends BaseTest {
         provideEmail("varag@testpro.io");
         //Step 3: Enter Password
         providePassword("te$t$tudent1");
-        Thread.sleep(2000);
         //Step4 : Click on Login button
         loginToKoel();
 
@@ -46,60 +45,48 @@ public class LoginTests extends BaseTest {
 
 //Login with Valid email Test using the Page Object Model
     @Test
-    public static void loginValidEmailValidPasswordTest() throws InterruptedException {
+    public static void loginValidEmailValidPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("varag@testpro.io");
-        Thread.sleep(2000);
         loginPage.providePassword("te$t$tudent1");
-        Thread.sleep(2000);
         loginPage.clickSubmit();
-        Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
     @Test
-    public void loginInValidEmailValidPasswordTest() throws InterruptedException {
+    public void loginInValidEmailValidPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("invalid@email.com");
-        Thread.sleep(2000);
         loginPage.providePassword("te$t$tudent1");
-        Thread.sleep(2000);
         loginPage.clickSubmit();
-        Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
 
     @Test
-    public void loginEmptyEmailPasswordTest() throws InterruptedException {
+    public void loginEmptyEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("");
-        Thread.sleep(2000);
         loginPage.providePassword("");
-        Thread.sleep(2000);
         loginPage.clickSubmit();
-        Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
 
     @Test
-    public void loginEmptyEmailValidPasswordTest() throws InterruptedException {
+    public void loginEmptyEmailValidPasswordTest(){
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("");
-        Thread.sleep(2000);
         loginPage.providePassword("te$t$tudent1");
-        Thread.sleep(2000);
         loginPage.clickSubmit();
-        Thread.sleep(2000);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }

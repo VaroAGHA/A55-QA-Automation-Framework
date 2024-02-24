@@ -58,7 +58,7 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
 
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         // WebDriverManager.firefoxdriver().setup();
         // WebDriverManager.edgedriver().setup();
         // WebDriverManager.safaridriver();
@@ -85,14 +85,14 @@ public class BaseTest {
         driver = new FirefoxDriver(options);
         */
         //----------------------------------------------------------------------------------------//
-       // driver = pickBrowser(System.getProperty("browser"));
+        // driver = pickBrowser(System.getProperty("browser"));
         //System.out.println();
 
         //Implicit Wait
         // getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //Explicit Wait
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-      fluentWait = new FluentWait<WebDriver>(getDriver())
+        fluentWait = new FluentWait<WebDriver>(getDriver())
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(10));
         driver.manage().window().maximize();
