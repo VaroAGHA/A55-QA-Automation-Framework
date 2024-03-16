@@ -58,7 +58,7 @@ public class BaseTest {
 
     */
 
-  /* @BeforeSuite
+   @BeforeSuite
     static void setupClass() {
 
        WebDriverManager.chromedriver().setup();
@@ -67,7 +67,6 @@ public class BaseTest {
         // WebDriverManager.safaridriver();
     }
 
-   */
 
     @BeforeMethod
     @Parameters({"BaseURL"})

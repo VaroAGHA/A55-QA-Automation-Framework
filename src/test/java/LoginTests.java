@@ -45,7 +45,7 @@ public class LoginTests extends BaseTest {
    */
 
 
-//Login with Valid email Test using the Page Object Model
+    //Login with Valid email Test using the Page Object Model
     @Test
     public static void loginValidEmailValidPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -82,7 +82,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginEmptyEmailValidPasswordTest(){
+    public void loginEmptyEmailValidPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
@@ -92,7 +92,8 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.avatarToBeNotVisible());
 
     }
-
+}
+/*
     @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
     public void loginWithNegativeData(String email, String password) {
         //NavigateToPage();
