@@ -15,8 +15,6 @@
              </methods>
          </class>
             <!--
-
-            <class name="LoginTests"/>
             <class name="ProfileTest"/>
             <class name="AllSongsTest"/>
             <class name="HomeTest"/>
